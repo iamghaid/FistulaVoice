@@ -1,0 +1,14 @@
+.vercel/
+.openai/
+node_modules/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+deployment*.tar.gz
+interface-preview.jpg
+tools/fisav/*.csv
+tools/fisav/*.xlsx
+tools/fisav/*-integrity.json
+tools/fisav/source-integrity.json

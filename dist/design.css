@@ -1,0 +1,62 @@
+/* Typography and visual polish; data and analysis are unchanged. */
+:root{--ink:#173e3d;--muted:#647e78;--bg:#f1f5ef;--line:#dce7df}
+html[lang=en]{--font:'Segoe UI',Arial,sans-serif}
+html[lang=en] h1,html[lang=en] .comparison-heading,html[lang=en] .hero-copy h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-1.1px}
+html[lang=en] h1{font-size:40px;line-height:1.2}
+html[lang=en] .comparison-heading{font-size:32px}
+html[lang=en] .brand{font-family:'Segoe UI',Arial,sans-serif;font-weight:700;letter-spacing:-.8px}
+html[lang=en] h3{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;font-weight:600}
+html[lang=en] nav button{font-size:13px}
+html[lang=en] .page-heading p,html[lang=en] .research-intro{font-size:14px}
+html[lang=en] .comparison-caption,html[lang=en] .finding-label,html[lang=en] .sensor-note{font-size:12px}
+html[lang=en] .measurement span,html[lang=en] .anatomical-metrics span{font-size:11px}
+html[lang=en] .measurement strong,html[lang=en] .anatomical-metrics strong{font-family:'Segoe UI',Arial,sans-serif;font-weight:500;font-variant-numeric:tabular-nums}
+html[lang=en] .measurement small{font-size:10px}
+body{background:radial-gradient(ellipse at 92% 0%,#d5e8df77,transparent 45%),radial-gradient(ellipse at 25% 32%,#eee4d977,transparent 43%),linear-gradient(150deg,#f5f7f0,#edf4ef 65%,#f6f3eb);background-attachment:fixed}
+.app-shell{position:relative;isolation:isolate}
+.app-shell::before{content:'';position:absolute;inset:84px 0 0;z-index:-1;pointer-events:none;background-image:radial-gradient(#54796916 .7px,transparent .7px);background-size:22px 22px;mask-image:linear-gradient(to bottom,#0008,transparent 70%)}
+.sidebar{background:#fcfdf9;border-color:#dce7df;padding-top:35px}
+.workspace{background:#f1f6ef;border-color:#e0e9df;margin-top:40px}
+nav button{padding:14px 13px;border-radius:11px}
+nav button.active{background:#0b5d5a;color:#fff;box-shadow:0 5px 15px #0b5d5a14}
+nav button.active .nav-count{background:#ffffff20;color:#fff}
+.nav-label{color:#829b90}
+.topbar{background:#fcfdf8db;backdrop-filter:blur(14px);border-color:#dce7df}
+.demo-pill{color:#648579;background:#eaf1e7;border:1px solid #dce8d7;font-size:10px;letter-spacing:.4px;padding:5px 11px}
+.avatar{background:#dbe9dc;border:3px solid #f6f9f2}
+main{padding-top:42px}
+.page-heading{padding:0 0 26px;border-bottom:1px solid #d4e2d7;margin-bottom:30px;align-items:center}
+.eyebrow{color:#477d69;letter-spacing:2.2px}
+.page-heading p{margin-top:13px;max-width:580px}
+.primary{border-radius:10px;padding:13px 19px;font-size:12px;box-shadow:0 5px 15px #0b5d5a18}
+.secondary{background:#f9fbf6;border-color:#d7e5d9;border-radius:9px;font-size:12px;padding:11px 16px}
+.card{border-radius:20px;background:#fffefbed;border-color:#dce6dc;box-shadow:0 7px 28px #24453606;padding:27px}
+.clinical-comparison{gap:25px;margin-top:30px}
+.clinical-case{position:relative;overflow:hidden;background:linear-gradient(155deg,#fffefa,#fff);border-top:3px solid #629a81}
+.clinical-case.stenosis-case{border-color:#e5cdbd;border-top-color:#c78969;background:linear-gradient(155deg,#fffaf5,#fff 55%)}
+.clinical-case .card-heading{margin-bottom:22px}
+.clinical-badge{border:1px solid #cddfcf;padding:6px 10px;font-size:11px;background:#edf5eb}
+.clinical-badge.alert{border-color:#ecd1be;background:#f8ebe1;color:#9f5b3d}
+.finding-label{margin:0 0 12px;color:#7a8b7c}
+.anatomical-metrics{gap:34px;border-bottom:1px solid #eae5dc;margin-bottom:16px;padding:12px 0 18px;min-height:90px}
+.anatomical-metrics strong{margin-top:6px;font-size:27px;color:#8a503d}
+.anatomy-spacer{border-color:#e1e9df}
+.sensor-note{margin-top:0}
+.clinical-case audio{height:41px;margin:16px 0 7px}
+.clinical-case canvas{border-radius:12px;overflow:hidden;background:#f4f7f0;margin:20px 0 8px}
+.measurement-grid{gap:12px;margin:20px 0 25px}
+.measurement{background:#f4f7f1;border:1px solid #e3eade;padding:15px 13px;border-radius:11px}
+.stenosis-case .measurement{background:#f8f4ed;border-color:#ebe2d7}
+.measurement strong{font-size:23px;margin:8px 0 4px;line-height:1.25}
+.clinical-case .detail-actions{border-top:1px solid #e3e9df;padding-top:19px;justify-content:space-between}
+.text-button{font-size:11px;color:#537a67}
+.inline-note.comparison-note{background:#edf3e9;border-color:#d6e2cf;color:#5c7768;font-size:12px;padding:14px 18px;border-radius:11px}
+.research-raw{margin-top:27px}
+.research-raw canvas{background:#f6f9f3;border:1px solid #e4ebe0;border-radius:12px;padding:8px}
+.research-source{border-top:1px solid #d6e1d3;padding-top:20px;font-size:12px}
+footer{padding-top:30px;color:#7f9585}
+.social-button{background:#f8fbf3;border-color:#d6e3d0;color:#527965}
+html[dir=rtl] h1,html[dir=rtl] .comparison-heading{font-family:'Thmanyah Display','Thmanyah Sans',Arial,sans-serif;letter-spacing:0}
+@media(max-width:1150px){html[lang=en] h1{font-size:34px}.card{padding:23px}.clinical-badge{font-size:10px}}
+@media(max-width:600px){main{padding-top:28px}.sidebar{padding-top:17px}.topbar{background:#fbfdf7}.page-heading{padding-bottom:22px;margin-bottom:24px;align-items:flex-start}.page-heading>.primary{padding:10px 12px;font-size:10px;margin-top:14px}html[lang=en] h1{font-size:30px;letter-spacing:-.6px}.page-heading p{line-height:1.8}html[lang=en] .page-heading p{font-size:12px}html[lang=en] .comparison-heading{font-size:28px}.card{padding:20px;border-radius:17px}.clinical-comparison{gap:19px;margin-top:22px}.clinical-badge{font-size:10px;padding:5px 8px}.measurement{padding:12px 10px}.measurement strong{font-size:21px}.anatomy-spacer{display:none}.clinical-case .detail-actions{gap:8px}.secondary{font-size:11px}.comparison-caption{font-size:11px}.app-shell::before{inset-block-start:57px}.inline-note.comparison-note{font-size:11px}.clinical-case .card-heading{gap:8px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}

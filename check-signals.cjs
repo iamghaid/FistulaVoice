@@ -1,0 +1,18 @@
+const assert=require('assert'),fs=require('fs'),vm=require('vm');
+const Signal=require('./dist/measurements.js');const sr=16384;
+const tone=Float32Array.from({length:sr},(_,i)=>.5*Math.sin(2*Math.PI*1024*i/sr));
+const m=Signal.analyze([tone],sr);
+assert(Math.abs(m.rms-.5/Math.sqrt(2))<1e-7,'sine RMS');
+assert(Math.abs(m.rmsDb-(-9.03089987))<1e-6,'RMS dBFS');
+assert(Math.abs(m.peakDb-(-6.02059991))<1e-6,'peak dBFS');
+assert.equal(m.duration,1);assert.equal(m.dominantHz,1024);assert(Math.abs(m.centroidHz-1024)<.01);assert.equal(m.frames,15);assert.equal(m.nearLimitPct,0);
+assert(Math.abs(Signal.similarity(m,m)-1)<1e-10);
+const other=Signal.analyze([Float32Array.from(tone,(_,i)=>.5*Math.sin(2*Math.PI*2048*i/sr))],sr);assert(Signal.similarity(m,other)<.001);
+const silence=Signal.analyze([new Float32Array(sr)],sr);assert.equal(silence.rmsDb,null);assert.equal(silence.centroidHz,null);assert.equal(silence.dominantHz,null);assert.equal(Signal.similarity(m,silence),null);
+const full=Signal.analyze([Float32Array.from({length:sr},()=>1)],sr);assert.equal(full.nearLimitPct,100);
+assert.equal(Signal.similarity(m,Signal.analyze([tone],16000)),null);
+const stereo=Signal.analyze([tone,tone],sr);assert.equal(stereo.channels,2);assert(Math.abs(stereo.rms-m.rms)<1e-10);
+const pcm=Signal.synth({seed:3}),demo=Signal.analyze([pcm],16000);assert.equal(demo.duration,12);assert.equal(demo.sampleRate,16000);assert(Math.abs(demo.dominantHz-180)<8);
+const dictionary={};vm.createContext(dictionary);vm.runInContext(fs.readFileSync('dist/i18n.js','utf8')+';this.dict=I18N;',dictionary);assert.deepEqual(Object.keys(dictionary.dict.en).sort(),Object.keys(dictionary.dict.ar).sort(),'language parity');
+const html=fs.readFileSync('dist/index.html','utf8');for(const match of html.matchAll(/data-(?:i18n|i18n-html|placeholder)="([^"]+)"/g)){assert(dictionary.dict.en[match[1]],'missing English key '+match[1]);assert(dictionary.dict.ar[match[1]],'missing Arabic key '+match[1]);}assert(html.includes('lang="en" dir="ltr"'));assert(fs.readFileSync('dist/app.js','utf8').includes("let lang='en'"));
+(async()=>{const blob=Signal.wav(pcm,16000),buffer=await blob.arrayBuffer(),data=new DataView(buffer);assert.equal(data.getUint32(24,true),16000);assert.equal(data.getUint32(40,true),pcm.length*2);assert.equal(data.getInt16(44,true)/32768,pcm[0]);console.log('PASS: PCM RMS/peak/dBFS, duration, clipping, FFT peak & centroid, silence, stereo, similarity, WAV consistency and bilingual parity.');})();

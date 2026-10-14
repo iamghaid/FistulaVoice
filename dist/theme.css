@@ -1,0 +1,49 @@
+/* Paired themes and a decorative acoustic contour backdrop. */
+.theme-toggle{width:35px;height:35px;display:grid;place-items:center;border:1px solid #cbded1;border-radius:10px;background:#f9fcf6;color:#245e50;font-size:23px;line-height:1;cursor:pointer}
+body{background-image:radial-gradient(ellipse at 95% 8%,#b4dcc375,transparent 45%),radial-gradient(ellipse at 20% 50%,#edd7bd70,transparent 45%),linear-gradient(140deg,#faf8ef,#eaf4ed 65%,#f4efe3);background-attachment:fixed}
+.app-shell::before{background-image:repeating-radial-gradient(ellipse at 100% 10%,transparent 0,transparent 46px,#497e6512 47px,transparent 49px,transparent 83px);background-size:100% 950px;mask-image:linear-gradient(#000,transparent 85%)}
+html[data-theme=dark]{--ink:#e3eee8;--muted:#a3b9ae;--bg:#101c1a;--line:#2c4238;--teal:#83c8af;--mint:#223e32;color-scheme:dark}
+html[data-theme=dark] body{background-image:radial-gradient(ellipse at 95% 8%,#315e4c66,transparent 45%),radial-gradient(ellipse at 20% 50%,#69482c25,transparent 45%),linear-gradient(140deg,#0e1816,#172922 65%,#1c211b)}
+html[data-theme=dark] .app-shell::before{background-image:repeating-radial-gradient(ellipse at 100% 10%,transparent 0,transparent 46px,#a0d5b715 47px,transparent 49px,transparent 83px)}
+html[data-theme=dark] .sidebar,html[data-theme=dark] .topbar{background:#12201ded;border-color:#2b4035}
+html[data-theme=dark] .workspace{background:#1b3027;border-color:#30493b}
+html[data-theme=dark] .workspace-icon,html[data-theme=dark] .avatar{background:#294235;color:#b5dfc4;border-color:#294235}
+html[data-theme=dark] .brand,html[data-theme=dark] .language-btn{color:#e2eee6}
+html[data-theme=dark] .brand>span>span{color:#91cdb3}
+html[data-theme=dark] .theme-toggle{background:#263d31;border-color:#3a5845;color:#e7d6ae}
+html[data-theme=dark] .breadcrumb,html[data-theme=dark] .nav-label{color:#8da898}
+html[data-theme=dark] nav button{color:#a6bcb0}
+html[data-theme=dark] nav button.active{background:#346650;color:#f0faf3}
+html[data-theme=dark] .demo-pill{background:#223a2e;border-color:#36513f;color:#add3bb}
+html[data-theme=dark] .page-heading{border-color:#34493c}
+html[data-theme=dark] .eyebrow{color:#8bc3a9}
+html[data-theme=dark] .card,html[data-theme=dark] .metric-card{background:#1c2b24f5;border-color:#364b3c;box-shadow:0 7px 28px #0002}
+html[data-theme=dark] .clinical-case{background:linear-gradient(150deg,#20332a,#18271f);border-top-color:#77b68f}
+html[data-theme=dark] .clinical-case.stenosis-case{background:linear-gradient(150deg,#342b23,#242820 65%);border-color:#625041;border-top-color:#c99575}
+html[data-theme=dark] .clinical-badge,html[data-theme=dark] .badge{background:#294934;border-color:#41624a;color:#c1dfc8}
+html[data-theme=dark] .clinical-badge.alert{background:#543b2c;border-color:#78533b;color:#f1c4a1}
+html[data-theme=dark] .finding-label,html[data-theme=dark] .sensor-note{color:#a3b7a6}
+html[data-theme=dark] .anatomical-metrics{border-color:#4a4837}
+html[data-theme=dark] .anatomical-metrics strong{color:#ebbd9e}
+html[data-theme=dark] .measurement{background:#26392c;border-color:#3d513d}
+html[data-theme=dark] .stenosis-case .measurement{background:#393529;border-color:#504b38}
+html[data-theme=dark] .measurement small{color:#a2b89e}
+html[data-theme=dark] .clinical-case .detail-actions,html[data-theme=dark] .research-source,html[data-theme=dark] .method-note,html[data-theme=dark] .sample-row,html[data-theme=dark] .capture-item,html[data-theme=dark] .protocol-list>div{border-color:#3a503e}
+html[data-theme=dark] .primary{background:#86c5a5;color:#11241b}
+html[data-theme=dark] .primary:hover{background:#a0d9ba}
+html[data-theme=dark] .secondary,html[data-theme=dark] .social-button{background:#283e2f;border-color:#455f47;color:#c5dfc6}
+html[data-theme=dark] .text-button{color:#acceb3}
+html[data-theme=dark] .inline-note,html[data-theme=dark] .inline-note.comparison-note{background:#2c3726;border-color:#47523a;color:#bdcaae}
+html[data-theme=dark] .research-raw canvas,html[data-theme=dark] .clinical-case canvas{background:#edf3e8;border-color:#53634c}
+html[data-theme=dark] input,html[data-theme=dark] select,html[data-theme=dark] textarea{background:#21382a;border-color:#435a43;color:#dcebd9}
+html[data-theme=dark] .segmented{background:#253b2b}
+html[data-theme=dark] .segmented button.active{background:#405a41;color:#eef5e5}
+html[data-theme=dark] .sample-row{background:#1d3022;color:#dfecda}
+html[data-theme=dark] .sample-row.selected{background:#344e35;border-color:#577157}
+html[data-theme=dark] .sample-icon{background:#38543b;color:#c4dfbf}
+html[data-theme=dark] .sample-status{color:#9aca9c}
+html[data-theme=dark] .sample-status.warn{color:#dfb48b}
+html[data-theme=dark] .audio-chart{background:#e4eedc;border-color:#51694a}
+html[data-theme=dark] footer,html[data-theme=dark] .footer-brand{color:#9bb29a}
+html[data-theme=dark] #toast{background:#b6d2aa;color:#16251a}
+@media(max-width:600px){.header-tools{gap:10px}.theme-toggle{width:30px;height:30px;font-size:20px}.app-shell::before{background-size:100% 700px}}
