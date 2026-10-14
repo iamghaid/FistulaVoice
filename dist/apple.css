@@ -1,0 +1,78 @@
+/* Native-system typography, quiet surfaces and glass navigation. */
+:root{--ink:#1d2528;--muted:#737d82;--line:#e4e8eb;--teal:#007b79;--bg:#f5f6f8}
+html[lang=en]{--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+html[lang=en] h1,html[lang=en] h2,html[lang=en] .comparison-heading,html[lang=en] h3,html[lang=en] .hero-copy h2{font-family:var(--font);font-weight:600;letter-spacing:-.035em}
+html[lang=en] h1{font-size:38px;line-height:1.18;font-weight:700}
+html[lang=en] .comparison-heading{font-size:26px;font-weight:600}
+html[lang=en] h3{font-size:16px;letter-spacing:-.02em}
+body{background:radial-gradient(ellipse at 85% 0%,#c9dfe85c,transparent 42%),radial-gradient(ellipse at 65% 70%,#d8e8e74d,transparent 50%),#f5f6f8;background-attachment:fixed}
+.app-shell::before{background:none;mask-image:none}
+.sidebar{width:230px;background:#f5f6f8c9;border-color:#dce2e88a;backdrop-filter:blur(30px) saturate(1.35);padding:32px 18px}
+.app-shell{margin-inline-start:230px}
+.brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif!important;font-size:19px;gap:9px;letter-spacing:-.7px}
+.brand img{width:37px;height:37px}.brand small{font-size:6px;letter-spacing:1.4px;color:#8b959b}
+.workspace{background:#ffffff85;border-color:#ffffffa6;box-shadow:0 1px 3px #17252e06;margin-top:34px;border-radius:13px;padding:12px}
+.workspace-icon{background:#e4efef;color:#428a86;border-radius:9px}
+.nav-label{font-size:10px;letter-spacing:.8px;color:#929ba1;margin-top:30px}
+nav{gap:5px}nav button{padding:11px 13px;border-radius:9px;color:#707d85;font-size:13px!important;font-weight:500}
+nav button.active{background:#dce9ecb3;color:#006e75;box-shadow:none}
+.nav-icon{width:19px;height:19px;display:grid;place-items:center}.nav-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav-count{background:#ffffff80;color:#75868b;font-size:10px}
+.sidebar-bottom{padding:0 8px}.sidebar-bottom p{color:#929da2;font-size:10px}
+.topbar{height:76px;background:#ffffff69;backdrop-filter:blur(24px) saturate(1.3);border-color:#e1e6eb86;padding:0 40px}
+.breadcrumb{font-size:11px;color:#a0a9ae}.header-tools{gap:15px}
+.theme-toggle{height:33px;width:33px;border:1px solid #dfe5eb;background:#ffffff99;color:#73818c;border-radius:50%;font-size:21px;box-shadow:0 2px 5px #17252e04}
+.language-btn{font-size:11px;color:#667983}.demo-pill{background:#f1f4f7;border-color:#e6ebef;color:#809099;font-size:9px;border-radius:20px;padding:5px 11px}
+.avatar{height:32px;width:32px;border:2px solid #fff;background:linear-gradient(145deg,#d3e3e7,#edf1ed);color:#608c8d;font-size:9px;box-shadow:0 2px 4px #17252e08}
+main{max-width:1400px;padding:40px 40px 20px}.page-heading{margin-bottom:29px;border:0;padding-bottom:8px}
+.eyebrow{font-size:9px;letter-spacing:2px;color:#729398}.page-heading p{font-size:13px!important;color:#859199;margin-top:12px}
+.primary{background:#087f87;color:#fff;border-radius:25px;padding:12px 19px;font-size:11px;font-weight:500;box-shadow:0 4px 12px #087f8712}
+.primary:hover{background:#076d76}.secondary{border-radius:22px;background:#f4f7f9;border-color:#e5ebef;color:#507783;padding:10px 16px;font-size:11px}
+.card,.metric-card{background:#ffffffef;border:1px solid #ffffff;border-radius:24px;box-shadow:0 5px 22px #1c354706,0 1px 2px #1c354703;padding:25px}
+.clinical-comparison{gap:22px;margin-top:24px}.clinical-case,.clinical-case.stenosis-case{background:#fffffff2;border:1px solid #e3e9ec;border-top:1px solid #e3e9ec;box-shadow:0 8px 28px #20324406;transition:box-shadow .2s,transform .2s}
+.clinical-case:hover{box-shadow:0 12px 35px #2032440d}
+.clinical-case .card-heading{margin-bottom:20px}.clinical-badge{border:0;background:#eaf3ef;color:#5c8f76;border-radius:20px;padding:6px 11px;font-size:10px;font-weight:500}
+.clinical-badge.alert{border:0;background:#fff0e9;color:#b17555}
+.finding-label{font-size:11px!important;color:#98a1a6}.sensor-note{font-size:11px!important;color:#7f939a}
+.anatomical-metrics{border-color:#edf0f2;min-height:93px;gap:35px;padding-bottom:19px}.anatomical-metrics span{font-size:10px!important;color:#97a3a9}
+.anatomical-metrics strong{font-family:var(--font);font-size:27px;font-weight:500;letter-spacing:-1px;color:#394f57;margin-top:7px}
+.clinical-case audio{margin-top:13px;height:39px}.clinical-case canvas{border-radius:13px;background:#f5f8fa;margin-top:20px}
+.measurement-grid{gap:9px;margin-top:18px}.measurement,.stenosis-case .measurement{background:#f6f8fa;border:1px solid #f0f3f5;border-radius:13px;padding:15px 13px}
+.measurement span{font-size:10px!important;color:#8e9ca5}.measurement strong{font-family:var(--font)!important;font-size:24px;font-weight:500;color:#345965;letter-spacing:-.8px}.measurement small{font-size:9px;color:#98a6ac}
+.clinical-case .detail-actions{border-color:#edf1f4;padding-top:18px}.text-button{font-size:10px;color:#6b8d99}
+.comparison-caption{font-size:11px!important;color:#98a3a9}.research-intro{font-size:13px!important;color:#7d8c95}
+.inline-note.comparison-note{background:#eaf0f3b3;border:1px solid #e3eaee;color:#7e939f;border-radius:14px;font-size:11px}
+.research-raw{margin-top:24px}.research-raw canvas{background:#f7f9fa;border-color:#eef1f3;border-radius:15px}
+.research-source{border-color:#dfe6eb;color:#9aa6ae}.research-source .text-button{color:#7693a2}
+footer{padding:26px 40px;color:#a0abb2;font-size:9px}.social-button{background:#ffffffa1;border-color:#e0e7ec;color:#7f949e;border-radius:50%;width:28px;height:28px}
+input,select,textarea{border-color:#e2e8ed;background:#f7f9fb;border-radius:11px}.live-display{background:linear-gradient(145deg,#154c57,#1c393e);border:1px solid #ffffff0a;border-radius:18px}
+html[data-theme=dark]{--ink:#edf0f3;--muted:#9ba9b4;--line:#313b44;--bg:#11171d;--teal:#69c1c6}
+html[data-theme=dark] body{background:radial-gradient(ellipse at 85% 0%,#263f535c,transparent 42%),radial-gradient(ellipse at 65% 70%,#233e3e42,transparent 50%),#11171d}
+html[data-theme=dark] .app-shell::before{background:none}
+html[data-theme=dark] .sidebar{background:#182029c7;border-color:#ffffff08}
+html[data-theme=dark] .topbar{background:#19222c80;border-color:#ffffff08}
+html[data-theme=dark] .workspace{background:#ffffff05;border-color:#ffffff08;box-shadow:none}
+html[data-theme=dark] .workspace-icon,html[data-theme=dark] .avatar{background:#304553;color:#91bec8;border-color:#ffffff09}
+html[data-theme=dark] nav button{color:#98a9b8}html[data-theme=dark] nav button.active{background:#344d5a80;color:#8fcbd3}
+html[data-theme=dark] .brand,html[data-theme=dark] .language-btn{color:#d6e0e9}html[data-theme=dark] .brand>span>span{color:#7fb9c4}
+html[data-theme=dark] .theme-toggle{background:#ffffff06;border-color:#ffffff10;color:#b6c5d2}
+html[data-theme=dark] .demo-pill{background:#ffffff05;border-color:#ffffff08;color:#8196a8}
+html[data-theme=dark] .eyebrow{color:#6c9cae}html[data-theme=dark] .page-heading p{color:#8296a6}
+html[data-theme=dark] .card,html[data-theme=dark] .clinical-case,html[data-theme=dark] .clinical-case.stenosis-case,html[data-theme=dark] .metric-card{background:#202a34ed;border:1px solid #ffffff08;box-shadow:0 8px 30px #00000015}
+html[data-theme=dark] .clinical-badge{background:#345b4d55;color:#94c5ab;border:0}html[data-theme=dark] .clinical-badge.alert{background:#714b3545;color:#d9ad8e;border:0}
+html[data-theme=dark] .finding-label,html[data-theme=dark] .sensor-note{color:#839baa}
+html[data-theme=dark] .anatomical-metrics{border-color:#ffffff09}html[data-theme=dark] .anatomical-metrics strong{color:#d7e1e8}
+html[data-theme=dark] .measurement,html[data-theme=dark] .stenosis-case .measurement{background:#ffffff04;border-color:#ffffff05}
+html[data-theme=dark] .measurement strong{color:#bad7e3}html[data-theme=dark] .measurement small{color:#718c9e}
+html[data-theme=dark] .clinical-case .detail-actions{border-color:#ffffff09}
+html[data-theme=dark] .primary{background:#77bdc7;color:#142e36}html[data-theme=dark] .primary:hover{background:#9bd1d8}
+html[data-theme=dark] .secondary,html[data-theme=dark] .social-button{background:#ffffff06;border-color:#ffffff09;color:#a4c1d1}
+html[data-theme=dark] .inline-note.comparison-note{background:#2537447a;border-color:#ffffff05;color:#8da7b9}
+html[data-theme=dark] .research-source{border-color:#ffffff0b}
+html[data-theme=dark] .clinical-case canvas,html[data-theme=dark] .research-raw canvas{background:#eef3f6;border-color:#ffffff09}
+html[data-theme=dark] input,html[data-theme=dark] select,html[data-theme=dark] textarea{background:#ffffff04;border-color:#ffffff10;color:#d6e0e9}
+html[dir=rtl] h1,html[dir=rtl] .comparison-heading,html[dir=rtl] h3{font-family:'Thmanyah Display','Thmanyah Sans',Arial,sans-serif;letter-spacing:0}
+@media(max-width:1150px){.sidebar{width:210px}.app-shell{margin-inline-start:210px}main{padding:32px 28px 20px}.topbar{padding:0 28px}html[lang=en] h1{font-size:33px}.card{padding:22px}}
+@media(max-width:900px){.sidebar{width:74px;padding:24px 12px}.app-shell{margin-inline-start:74px}.brand img{width:44px;height:44px}nav button{padding:12px}}
+@media(max-width:600px){.sidebar{width:100%;padding:18px 18px 12px;background:#f5f7f9d9;border-bottom:1px solid #dce2e887}.app-shell{margin:0}.brand{font-size:19px}.brand img{width:32px;height:32px}nav{gap:5px;margin-top:19px;justify-content:space-between}nav button{padding:9px 11px;font-size:11px!important}.nav-icon,.nav-icon svg{width:16px;height:16px}.topbar{height:58px;padding:0 18px}.header-tools{gap:11px}.theme-toggle{height:30px;width:30px}.demo-pill{display:none}main{padding:30px 18px 12px}.page-heading{margin-bottom:28px;align-items:flex-start}.page-heading>.primary{margin-top:6px;padding:10px 13px;font-size:10px}html[lang=en] h1{font-size:29px;letter-spacing:-1px;line-height:1.2}.page-heading p{font-size:12px!important;line-height:1.7}.eyebrow{font-size:8px}html[lang=en] .comparison-heading{font-size:25px}.clinical-comparison{gap:17px}.card{padding:21px;border-radius:22px}.clinical-badge{font-size:10px}.measurement strong{font-size:22px}.research-intro{font-size:12px!important}.anatomy-spacer{display:none}footer{padding:25px 18px}.social-button{width:28px;height:28px}html[data-theme=dark] .sidebar{background:#18222cda}}
+@media(prefers-reduced-motion:reduce){.clinical-case{transition:none}}
