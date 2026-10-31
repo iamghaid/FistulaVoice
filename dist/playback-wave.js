@@ -20,6 +20,7 @@
     toggle.type = 'button'; toggle.className = 'text-button';
     foot.append(state, toggle); panel.append(head, canvas, progress, foot);
     audio.after(panel);
+    const flow = window.FlowScene?.create(panel);
     let source, analyser, data, frame = 0, frozen = reduced.matches, lastPaint = 0, failed = false;
     const ctx = canvas.getContext('2d');
     function labels() {
@@ -48,10 +49,10 @@
       } else { ctx.moveTo(0, 90); ctx.lineTo(900, 90); }
       ctx.stroke();
     }
-    function stop() { cancelAnimationFrame(frame); frame = 0; update(); }
+    function stop() { cancelAnimationFrame(frame); frame = 0; flow?.update(0,audio.currentTime,false); update(); }
     function tick(now) {
       if (audio.paused || audio.ended || !audio.isConnected || audio.closest('[hidden]')) { if (!audio.paused) audio.pause(); stop(); return; }
-      if (now - lastPaint >= 32) { if (!frozen) draw(); update(); lastPaint = now; }
+      if (now - lastPaint >= 32) { if (!frozen) draw(); if(analyser&&data){analyser.getFloatTimeDomainData(data);let sum=0;for(const v of data)sum+=v*v;flow?.update(Math.sqrt(sum/data.length),audio.currentTime,true);} update(); lastPaint = now; }
       frame = requestAnimationFrame(tick);
     }
     async function play() {
@@ -72,7 +73,7 @@
     toggle.onclick = () => { frozen = !frozen; labels(); };
     for (const event of ['timeupdate', 'loadedmetadata', 'durationchange', 'seeking', 'seeked', 'waiting', 'error']) audio.addEventListener(event, update);
     audio.addEventListener('play', play); audio.addEventListener('pause', stop); audio.addEventListener('ended', stop);
-    players.set(audio, { labels, draw, dispose() { audio.pause(); stop(); source?.disconnect(); analyser?.disconnect(); panel.remove(); } });
+    players.set(audio, { labels, draw, dispose() { audio.pause(); stop(); flow?.dispose(); source?.disconnect(); analyser?.disconnect(); panel.remove(); } });
     labels(); draw();
   }
   function scan() {

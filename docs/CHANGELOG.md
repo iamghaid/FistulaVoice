@@ -1,5 +1,11 @@
 # Release notes
 
+## Audio-reactive vessel illustration — 31 October 2026
+
+- Added a perspective-projected 3D vessel illustration to microphone recording and audio playback.
+- Included viewing-angle controls, pause/resume and reduced-motion defaults.
+- Cell motion uses a fixed illustrative speed; audio intensity affects glow only. This is not a physiological simulation or flow measurement.
+
 ## Submission preparation — 31 October 2026
 
 - Synchronized repository files with the deployed prototype.

@@ -38,6 +38,7 @@ The first recording is a reference, not a verified healthy baseline. Comparisons
 - **Browser recording:** up to 20 seconds per selected site, with required anonymous access/device codes.
 - **Compatible comparisons:** matching access, site, device, condition and decoded sample rate; legacy samples without placement metadata are excluded.
 - **Playback and review:** original audio, synchronized waveforms, current/previous recording comparison and local review notes.
+- **Illustrative 3D vessel:** perspective-rendered vessel and cells during microphone capture and playback, with viewing-angle and motion controls. Audio intensity changes the glow; fixed illustrative cell speed does not measure blood flow, pulse or stenosis.
 - **Technical analysis:** duration, RMS, digital peak, near-limit samples, dominant frequency, spectral centroid and spectral similarity.
 - **Research examples:** FiSaV PZT recordings, spectrograms, raw sensor traces and source-supplied examination findings.
 - **Local controls:** download recordings, export measurements as CSV and delete captures.
