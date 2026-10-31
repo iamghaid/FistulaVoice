@@ -1,188 +1,144 @@
 # FistulaVoice
 
-نموذج ويب تفاعلي لمتابعة التسجيلات الصوتية المتعلقة بالناسور الشرياني الوريدي المستخدم في غسيل الكلى، وعرض تسجيلات بحثية موثّقة ومقارنة خصائصها الصوتية.
+### A consistent sound history for dialysis access care
 
-**الموقع:** https://fistulavoice.vercel.app/  
-**المطوّرة:** Gheid Abdulkarim — [GitHub](https://github.com/iamghaid) · [LinkedIn](https://www.linkedin.com/in/gheid-abdulkarim-6567872ab/)
+**Team Kernel · MEDATHON prototype**
 
-> المشروع نموذج بحثي أولي، وليس جهازًا طبيًا معتمدًا أو نموذج AI مدرّبًا للتشخيص. تصنيف التضيّق المعروض مصدره نتائج الفحص المنشورة مع البيانات، ولا يستنتجه التطبيق من الصوت.
+[Live prototype](https://fistulavoice.vercel.app/) · [Reviewer walkthrough](docs/REVIEWER-GUIDE.md) · [Research data](docs/RESEARCH-DATA.md) · [Technical guide](docs/TECHNICAL-GUIDE.md)
 
-## ما الذي يقدّمه المشروع؟
+FistulaVoice adds a structured, replayable sound history to the assessment of arteriovenous fistulas used for hemodialysis. Its proposed value is continuity: a previous recording remains available for comparison across visits and care-team members.
 
-- واجهة بالإنجليزية والعربية مع اتجاه RTL. يبدأ بالإنجليزية عند كل تحميل.
-- وضع فاتح وداكن، مع حفظ الاختيار في المتصفح، واستخدام إعداد الجهاز إذا لم يوجد اختيار سابق.
-- تسجيلات FiSaV حقيقية من حساسات PZT، مع صوت قابل للتشغيل والتنزيل.
-- مقارنة حالة **pat002: تضيّق موثّق** بحالة **pat006: لا تضيّق موثّق**.
-- عرض Spectrogram، والتردد الغالب، ومركز الطيف، والمدة.
-- إظهار نتائج فحص الحالة pat002: قطر متبقٍ **2 mm** وقطر مرجعي **3.6 mm**، كما وردا في البيانات.
-- عرض الإشارات الخام ECG وPZT1 وPZT2 وPZT3.
-- مختبر تسجيل حقيقي بميكروفون المتصفح حتى 15 ثانية.
-- حفظ التسجيلات محليًا، وتشغيلها وتنزيلها وحذفها، وتصدير قياساتها بصيغة CSV.
-- مقارنة طيفية بين تسجيلات المستخدم المتوافقة في معدل العينات.
-- خط النظام للإنجليزية (-apple-system / BlinkMacSystemFont / Segoe UI)، وخط ثمانية للعربية، مع واجهة زجاجية وبطاقات مستوحاة من تطبيقات macOS وiOS.
-- تصميم متجاوب للموبايل والكمبيوتر.
+The working prototype demonstrates **Record → Compare → Review** through guided capture, dated histories, compatible-recording playback and local review notes. External research signals and cited studies distinguish the scientific rationale from the product's current capabilities.
 
-المقارَنة البحثية تخص **مشاركين مختلفين** في نفس موضع الحساس؛ ليست مقارنة قبل وبعد العلاج أو متابعة زمنية لشخص واحد. انتظام الموجة وحده لا ينفي التضيّق.
+> **Status:** functional research prototype, not a validated diagnostic device. Measurements describe audio, not stenosis severity or blood flow. Secure multi-user sharing and predictive detection are future work; recordings currently stay in the user's browser.
 
-## التشغيل محليًا
+![FistulaVoice workspace](docs/images/workspace.png)
 
-لا يحتاج التطبيق إلى npm install أو خطوة build؛ هو HTML وCSS وJavaScript مباشرة.
+## Try it in three minutes
 
-من جذر الريبو:
+No account or installation is needed to explore the [live demo](https://fistulavoice.vercel.app/).
 
-~~~bash
+1. **History:** select a site and date. Explore six fictional visits over 14 days. Values are labeled as fictional, not patient observations.
+2. **Signals:** play a research recording. The waveform follows the audio; pause, seek or freeze the visualization. Case labels come from dataset examinations, not app predictions.
+3. **Record:** enter an anonymous access code and device code, choose a fixed site, and record a non-medical test sound for up to 20 seconds. This step requires microphone permission.
+4. **History → My recordings:** repeat with matching metadata to compare current and previous recordings. Save a local review note.
+5. **Evidence:** inspect the original studies, their findings and the remaining validation needs.
+
+See the [reviewer guide](docs/REVIEWER-GUIDE.md) for a complete demonstration route.
+
+## Problem and proposed contribution
+
+Written descriptions may not preserve the original sound heard during an earlier assessment. FistulaVoice proposes a fistula-focused reference organized by **anonymous access code, fixed recording site, date, device and recording conditions**.
+
+The first recording is a reference, not a verified healthy baseline. Comparisons remain within compatible contexts. Whether this workflow improves clinical review or handover still needs testing with dialysis teams.
+
+## What works today
+
+- **Dated history:** site selection, a chronological chart, and differences from first/previous visits.
+- **Browser recording:** up to 20 seconds per selected site, with required anonymous access/device codes.
+- **Compatible comparisons:** matching access, site, device, condition and decoded sample rate; legacy samples without placement metadata are excluded.
+- **Playback and review:** original audio, synchronized waveforms, current/previous recording comparison and local review notes.
+- **Technical analysis:** duration, RMS, digital peak, near-limit samples, dominant frequency, spectral centroid and spectral similarity.
+- **Research examples:** FiSaV PZT recordings, spectrograms, raw sensor traces and source-supplied examination findings.
+- **Local controls:** download recordings, export measurements as CSV and delete captures.
+- **Interface:** English/Arabic, RTL, responsive navigation, light/dark themes, keyboard focus and reduced-motion support.
+
+## Three types of data, kept distinct
+
+**Fictional timeline:** invented values demonstrate changes at three fixed sites. They do not represent clinical progression and have no fabricated patient audio attached.
+
+**External research recordings:** derived FiSaV sensor excerpts from two different participants. They are not phone recordings, repeated visits or a before/after treatment comparison. Clinical labels come from the source. Playback gain differs between participants, so absolute listening levels should not be compared.
+
+**Your captures:** microphone recordings made in your browser. They receive no disease label and are not automatically uploaded to a care team.
+
+## Research behind the direction
+
+- **Song et al., Scientific Reports (2023):** recordings from 40 patients using dedicated acoustic equipment. The study reported sensitivity, specificity and accuracy above 90% for detecting stenosis greater than 50% in its dataset. These are **external results**, not FistulaVoice results. [Study](https://pubmed.ncbi.nlm.nih.gov/37848465/)
+- **Poloni et al., Annals of Biomedical Engineering (2025):** six patients followed prospectively with electronic-stethoscope recordings and hemodynamic measurements. Supports studying longitudinal acoustic changes, not assuming this app's centroid metric is clinically validated. [Study](https://pubmed.ncbi.nlm.nih.gov/39485642/)
+- **Higuchi et al. (2023):** phone recordings before/after angioplasty in three patients provide initial feasibility observations, not reliable performance across all phones or home conditions. [Study](https://www.jstage.jst.go.jp/article/jsdt/56/3/56_117/_article/-char/en)
+
+The three-site, approximately 20-second setup is a consultation-informed pilot choice, not a validated clinical standard derived from these papers.
+
+### Next validation priorities
+
+1. Compare smartphone and electronic-stethoscope recordings.
+2. Test repeatability at consistent sites under controlled conditions.
+3. Evaluate usefulness for review/handover and the additional workload.
+4. With consent and approvals, link longitudinal recordings to ultrasound findings and clinical outcomes for future detection research.
+
+## Current boundaries
+
+The prototype does not diagnose stenosis, predict an imminent clot, estimate access flow, recommend treatment or provide continuous emergency monitoring. It does not replace examination, Doppler ultrasound or dedicated flow measurement. There is no trained diagnostic model, hardware integration, live clinician notification service or secure multi-user patient portal in this release.
+
+## Run locally
+
+Static HTML, CSS and JavaScript: **no npm install or build step required.**
+
+```bash
+git clone https://github.com/iamghaid/FistulaVoice.git
+cd FistulaVoice
 python -m http.server 8000 --directory dist
-~~~
+```
 
-افتح http://localhost:8000/.
+Open [localhost:8000](http://localhost:8000). Microphone access requires HTTPS or localhost and support for MediaRecorder, Web Audio and IndexedDB. Opening `index.html` directly is not supported.
 
-الميكروفون يتطلب HTTPS أو localhost، ومتصفحًا يدعم MediaRecorder وWeb Audio API. عند فتح ملف index.html مباشرة قد تفشل قراءة ملفات البيانات، لذلك استخدم الخادم المحلي.
+### Included checks
 
-## تجربة سريعة
+With Node.js installed, run from the repository root:
 
-1. افتح الصفحة الرئيسية: تعرض حالتين موثّقتين بنتائج الفحص.
-2. شغّل صوت كل حالة، وقارن عرض الترددات.
-3. اضغط Recorded signal لعرض إشارات الحالة المختارة.
-4. بدّل إلى العربية، ثم جرّب زر الشمس/القمر.
-5. افتح Recording lab وسجّل صوتًا غير طبي أولًا.
-6. افتح Recordings لفحص العينة وتنزيل الصوت أو تصدير القياسات.
-
-## هيكل الملفات
-
-~~~text
-dist/
-  index.html                 هيكل الصفحات
-  app.js                     التنقل، التسجيل، المكتبة، التخزين والتصدير
-  i18n.js                    نصوص الإنجليزية والعربية
-  measurements.js            التحليل التقني للإشارة
-  research.js                المقارنة البحثية وقراءة بيانات الحالات
-  theme.js                   تبديل وحفظ الثيم
-  style.css                  تخطيط الواجهة الأساسي
-  design.css                 تحسين الخطوط والبطاقات
-  theme.css                  ألوان الثيمين والخلفية
-  apple.css                  تنسيق الواجهة الزجاجية وخطوط النظام
-  assets/
-    fistulavoice-logo.png
-    fonts/                   ملفات ثمانية والترخيص الأصلي
-    research/
-      pat002.json            قياسات وإشارات وبيانات تصنيف الحالة
-      pat006.json
-      fisav.json             ملف الحالة الأولى للتوافق
-      *.wav                  مقتطفات الصوت المشتقة
-      LICENSE_CC_BY.txt
-check-signals.cjs             اختبارات حسابات الإشارة والترجمة
-tools/fisav/                  أدوات استخراج وتجهيز البيانات
-RESEARCH-DATA.md              توثيق البيانات والتحويلات
-LOGO-PROMPT.md                وصف توليد الشعار
-~~~
-
-توجد في app.js بعض وظائف سيناريوهات عرض قديمة غير نشطة؛ لا يُستدعى توليد صوتها، ولا تظهر صفحات المرضى أو المراجعات الصناعية في التنقل الحالي.
-
-## البيانات البحثية ومصدر التصنيف
-
-**FiSaV: Fistula Sounds and Vibrations**
-
-- المستودع الأصلي: https://osf.io/hypfr
-- الورقة: https://doi.org/10.1038/s41597-026-08242-8
-- تصنيف الحالة: patient_information.xlsx، ورقة Patient data، حقل Presence (Y/N).
-- البيانات مجهولة الهوية وفق وصف المصدر.
-- الترخيص: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-
-النسبة: Centracchio et al., Scientific Data (2026)، وFiSaV dataset: Parlato, Centracchio, Cinotti & Andreozzi.
-
-تُضمَّن مقتطفات مطلوبة للعرض فقط؛ لا يحتوي الريبو على أرشيف البيانات الخام الكامل أو جدول المعلومات السريرية الكامل. البصمات الرقمية الخاصة بالملفات الأصلية والمشتقة محفوظة في JSON. تفاصيل التغييرات في [RESEARCH-DATA.md](RESEARCH-DATA.md).
-
-### تجهيز الصوت والرسوم
-
-- التسجيل الأصلي بمعدل 10,000 عينة/ثانية.
-- استُخدمت المقاطع من الثانية 10 إلى 22، أثناء الراحة وعلامة الإغلاق تساوي صفرًا.
-- أُزيلت المركبة المستمرة DC، ثم استُخدم ترشيح FFT بانتقال 15–25 Hz لاستخراج نطاق مسموع.
-- استُخدم كسب مشترك للقناتين داخل كل مشارك، ثم تصدير WAV من 16 بت.
-- كسب التشغيل مختلف بين المشاركين؛ لا تقارن شدة الصوت المطلقة بينهما.
-- هذا التحويل لا يعيد تطبيق فصل النبض والاهتزاز والصوت الكامل المذكور في الورقة.
-- Spectrogram: نافذة Hann من 1,024 نقطة، خطوة 128 عينة، وعرض كل إطار رابع.
-- الطيف معروض نسبيًا لقمة المقتطف من −70 إلى 0 dB، ضمن 0–1,500 Hz.
-- الرسوم الخام تعرض وحدات CSV الأصلية بمدى عمودي مستقل لكل إشارة.
-
-هذه تسجيلات حساسات ملامسة للجلد، وليست تسجيلات هاتف؛ جودة الالتقاط بالهاتف لا تزال بحاجة لاختبار منفصل.
-
-## قياسات التسجيلات الجديدة
-
-تُحسب بعد فك **كامل الملف الصوتي**:
-
-| القياس | المعنى |
-|---|---|
-| RMS | متوسط السعة التربيعي، خطيًا وdBFS |
-| Peak | أعلى سعة مطلقة، خطيًا وdBFS |
-| Near-limit samples | نسبة العينات التي تبلغ سعتها المطلقة 0.98 أو أكثر |
-| Dominant frequency | تردد أعلى قدرة طيفية بعد استثناء DC |
-| Spectral centroid | متوسط التردد المرجّح بالقدرة |
-| Duration | مدة الإشارة المفكوكة |
-| Sample rate / channels | معدل العينات والقنوات بعد فك الملف |
-| Cosine similarity | تشابه طيفي 0–1 بين عينتين متوافقتين |
-
-تحليل التسجيلات الجديدة يستخدم FFT من 2,048 نقطة بنافذة Hann وتداخل 50%. قد يعيد AudioContext أخذ عينات الملف؛ المعدّل الظاهر هو معدل الصوت المفكوك وليس بالضرورة معدل الجهاز الأصلي. يطلب التطبيق إيقاف معالجة الصدى والضوضاء والكسب، ويحفظ الإعدادات الفعلية حين يبلغ عنها المتصفح.
-
-**dBFS ليس dB SPL معايرًا.** تنبيه المستوى المنخفض تحت −60 dBFS قاعدة تقنية تجريبية، وليس عتبة طبية. الاقتراب من الحد الرقمي لا يثبت التشوّه التناظري. التشابه الطيفي ليس احتمال مرض أو درجة تضيّق.
-
-## التخزين والخصوصية
-
-- عينات الميكروفون وقياساتها: IndexedDB في المتصفح الحالي.
-- الثيم: localStorage.
-- لا يوجد backend يرفع تسجيلات المستخدم أو يرسل إشعارات إلى مركز طبي.
-- لا توجد حسابات مرضى أو تكاملات سريرية فعلية.
-- تغيير المتصفح أو الجهاز أو النطاق يعني مساحة تخزين مختلفة.
-- مسح بيانات الموقع يحذف العينات؛ نزّلها قبل المسح.
-- حذف العينات من التطبيق نهائي في التخزين المحلي.
-
-## الاختبارات
-
-~~~bash
+```bash
 node check-signals.cjs
-~~~
+node check-history.cjs
+```
 
-يتحقق من RMS وdBFS والقمم بإشارة جيبية معروفة، والتردد الغالب ومركز الطيف، والصمت، والقنوات، والعينات القريبة من الحد، والتشابه، وتطابق WAV مع PCM، وتكافؤ مفاتيح الترجمة، والإنجليزية الافتراضية.
+Checks cover signal calculations, WAV consistency, translation keys, comparison isolation and timeline calculations. Browser checks also exercised playback synchronization, seeking, local review flows, responsive layouts and themes. They do not establish clinical validity or universal device compatibility.
 
-جرى أيضًا فحص الواجهة في المتصفح، وتشغيل التسجيلات البحثية، والتحقق من تصنيفات الحالات مقابل الجدول الأصلي، وحفظ الثيم. هذه الاختبارات لا تثبت صلاحية تشخيصية، ولا تختبر جميع الهواتف أو جودة التقاط الناسور بها.
+## Repository map
 
-## إعادة تجهيز مقتطفات FiSaV
+```text
+dist/                    Deployable static application
+  app.js                 Recording, storage, library and exports
+  measurements.js        Technical signal analysis
+  history-*.js           Timeline, comparison rules and labels
+  history.js             Real capture history and review notes
+  playback-wave.js       Audio-synchronized visualization
+  research.js            External FiSaV cases and plots
+  evidence.js            Research rationale and links
+  interface.js / .css    Navigation and visual system
+  assets/                Logo, fonts and research excerpts
+docs/
+  REVIEWER-GUIDE.md      Walkthrough and submission checklist
+  TECHNICAL-GUIDE.md     Analysis, storage and deployment
+  RESEARCH-DATA.md       FiSaV provenance and processing
+  CHANGELOG.md           Release summary
+  LOGO-PROMPT.md         Logo provenance
+  images/               Prototype screenshots
+tools/fisav/             Optional data-preparation scripts
+check-signals.cjs        Signal and language checks
+check-history.cjs        Comparison and history checks
+```
 
-الأصول الجاهزة موجودة بالفعل؛ هذه الخطوات اختيارية:
+## Privacy and storage
 
-~~~bash
-python -m pip install numpy openpyxl
-python tools/fisav/extract.py pat002
-python tools/fisav/extract.py pat006
-~~~
+Captures, metadata and review notes stay in IndexedDB in the current browser/origin. Theme preference is stored locally. There is no application backend uploading recordings. Changing devices/browsers or clearing site storage makes local records unavailable; download anything you need to keep first.
 
-نزّل جدول المعلومات من المصدر المنشور https://osf.io/download/wd9s5/ وضعه في tools/fisav/patient_information.xlsx، ثم:
+Use anonymous codes, not patient identifiers. Start demonstrations with non-medical sounds. Patient recording requires consent and a clinician-agreed capture method. Browser-local storage is not a production clinical-record system or an assurance of healthcare compliance.
 
-~~~bash
-python tools/fisav/build_samples.py pat002
-python tools/fisav/build_samples.py pat006
-~~~
+## Team and ownership
 
-extract.py يستخدم HTTP Range لاستخراج ملف المشارك من الأرشيف، ويتحقق من حجمه وCRC. entries.json يحتفظ بفهرس الأرشيف المستخدم؛ إذا تغيّرت نسخة الأرشيف يجب تحديثه. ملفات CSV وXLSX الناتجة مستبعدة من Git.
+**Team Kernel** — roles from the submitted presentation:
 
-## النشر على Vercel
+- **Gheid Abdulkarim** — Computer Science; Team Leader & Researcher. [GitHub](https://github.com/iamghaid) · [LinkedIn](https://www.linkedin.com/in/gheid-abdulkarim-6567872ab/)
+- **Idris Jan** — Software Engineering; MVP Developer.
+- **Alaa Ammar** — Medical Student; Medical Research & Clinical Input.
 
-من جذر الريبو:
+Repository maintained under **iamghaid**.
 
-~~~bash
-cd dist
-vercel link
-vercel deploy --prod
-~~~
+## Attribution and licensing
 
-اربطه بمشروع fistulavoice الموجود في حساب المطوّرة. لا توجد خطوة build أو حزم runtime مطلوبة. إعدادات .vercel المحلية غير مرفوعة. عند الربط من لوحة GitHub اجعل Root Directory = dist، وFramework Preset = Other، واترك Build Command فارغًا.
+- **FiSaV-derived recordings:** CC BY 4.0. Dataset authors, transformations and source links are documented in [Research data](docs/RESEARCH-DATA.md). The [original license](dist/assets/research/LICENSE_CC_BY.txt) is retained.
+- **Fonts:** the supplied [font license](dist/assets/fonts/LICENSE.pdf) is retained.
+- **Logo:** generation provenance is documented in [Logo notes](docs/LOGO-PROMPT.md).
+- **Application code:** no open-source license has been granted. Repository visibility does not extend asset licenses to the application code.
 
-## حدود النسخة الحالية
-
-لا يوجد نموذج تعلّم آلي مدرّب للتشخيص أو خوارزمية مثبتة للكشف المبكر. لا يستنتج التطبيق نسبة تضيّق أو تدفّق دم من الصوت. تصنيفات الحالات البحثية هي معلومات مرجعية من فحوص المصدر. بناء نموذج طبي يتطلب بيانات مناسبة، وفصل المشاركين بين التدريب والاختبار، وتقييمًا سريريًا، واختبارًا مستقلًا للهواتف.
-
-## تراخيص الأصول
-
-- تسجيلات FiSaV المشتقة: CC BY 4.0 مع نسبة المصدر وذكر التحويلات.
-- خطوط ثمانية: ملف الترخيص الأصلي داخل assets/fonts/LICENSE.pdf.
-- الشعار: مولَّد عبر ImageGen؛ الوصف موثّق في LOGO-PROMPT.md.
-- لا يُفترض أن ترخيص البيانات أو الخطوط يمنح ترخيصًا للكود نفسه؛ لم يُحدَّد ترخيص مفتوح المصدر لهذا المستودع الخاص.
+**Live prototype:** [fistulavoice.vercel.app](https://fistulavoice.vercel.app/) · **Repository:** [iamghaid/FistulaVoice](https://github.com/iamghaid/FistulaVoice)
