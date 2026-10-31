@@ -20,7 +20,7 @@
     toggle.type = 'button'; toggle.className = 'text-button';
     foot.append(state, toggle); panel.append(head, canvas, progress, foot);
     audio.after(panel);
-    const flow = window.FlowScene?.create(panel);
+    const flow = window.FlowScene?.create(panel,audio.dataset.finding?{finding:audio.dataset.finding==='stenosis'}:{});
     let source, analyser, data, frame = 0, frozen = reduced.matches, lastPaint = 0, failed = false;
     const ctx = canvas.getContext('2d');
     function labels() {
