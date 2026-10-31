@@ -1,39 +1,30 @@
-/* Perspective projection of a schematic vessel, not a physiological flow model. */
+/* Original procedural 3D illustration. Fixed illustrative speed, never physiological inference. */
 window.FlowScene=(()=>{
- const scenes=new Set(),reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const tr=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
+ const instances=new Set(),tr=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
  function create(host){
   const box=document.createElement('section');box.className='flow-scene';
-  const head=document.createElement('div');head.className='flow-head';
-  const title=document.createElement('strong'),badge=document.createElement('span');head.append(title,badge);
-  const canvas=document.createElement('canvas');canvas.width=900;canvas.height=380;canvas.setAttribute('role','img');
-  const controls=document.createElement('div');controls.className='flow-controls';
-  const label=document.createElement('label'),slider=document.createElement('input');slider.type='range';slider.min='-40';slider.max='40';slider.value='12';label.append(slider);
-  const button=document.createElement('button');button.type='button';button.className='secondary';controls.append(label,button);
-  const note=document.createElement('p');box.append(head,canvas,controls,note);host.append(box);
-  const ctx=canvas.getContext('2d');let time=0,level=0,active=false,frozen=reduced.matches,angle=.21,paintedTime=0;
-  function labels(){title.textContent=tr('Inside the vessel','داخل الوعاء');badge.textContent=tr('Illustrative 3D','تصوّر ثلاثي الأبعاد');canvas.setAttribute('aria-label',tr('Schematic vessel with moving blood-cell illustrations. Audio changes brightness, not blood-flow measurements.','رسم توضيحي لوعاء وخلايا متحركة. الصوت يغيّر الإضاءة ولا يقيس تدفق الدم.'));label.firstChild?.nodeType===3&&label.firstChild.remove();label.prepend(document.createTextNode(tr('Viewing angle','زاوية العرض')));slider.setAttribute('aria-label',tr('Vessel viewing angle','زاوية عرض الوعاء'));button.textContent=frozen?tr('Resume motion','تحريك المشهد'):tr('Pause motion','تثبيت المشهد');button.setAttribute('aria-pressed',String(frozen));note.textContent=tr('Illustration only. Audio intensity controls the glow; cell speed is illustrative and fixed. This is not a measurement of blood flow, pulse or narrowing.','للتوضيح فقط. شدة الصوت تتحكم بالإضاءة؛ سرعة الخلايا افتراضية وثابتة. لا يقيس المشهد تدفق الدم أو النبض أو التضيق.');}
-  function project(x,y,z){const a=angle,c=Math.cos(a),s=Math.sin(a),xx=x*c+z*s,zz=-x*s+z*c,scale=700/(700+zz);return{x:450+xx*scale,y:190+y*scale,scale,z:zz};}
-  const center=x=>28*Math.sin(x/135);
-  function draw(){
-   if(!box.isConnected)return;
-   const dark=document.documentElement.dataset.theme==='dark';
-   ctx.fillStyle=dark?'#101827':'#f0f4f8';ctx.fillRect(0,0,900,380);
-   // Cross-sections describe a curved tube in 3D space; perspective changes with angle.
-   const shell=ctx.createLinearGradient(0,100,0,280);shell.addColorStop(0,dark?'rgba(132,166,220,.32)':'rgba(62,102,160,.25)');shell.addColorStop(.25,'rgba(125,163,219,.06)');shell.addColorStop(.75,'rgba(72,116,180,.12)');shell.addColorStop(1,'rgba(138,175,227,.38)');ctx.beginPath();for(let i=0;i<=80;i++){const x=-330+i*660/80,p=project(x,center(x)-65,0);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}for(let i=80;i>=0;i--){const x=-330+i*660/80,p=project(x,center(x)+65,0);ctx.lineTo(p.x,p.y);}ctx.closePath();ctx.fillStyle=shell;ctx.fill();
-const rings=[];for(let i=0;i<25;i++){const x=-330+i*660/24;const p=project(x,center(x),0);rings.push({x,p});}
-   rings.sort((a,b)=>b.p.z-a.p.z);
-   for(const {x,p} of rings){ctx.beginPath();for(let j=0;j<=40;j++){const a=j/40*Math.PI*2,q=project(x,center(x)+65*Math.cos(a),65*Math.sin(a));j?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y);}ctx.closePath();ctx.fillStyle=dark?'rgba(113,151,207,.025)':'rgba(47,86,145,.025)';ctx.fill();ctx.strokeStyle=dark?'rgba(150,181,222,.065)':'rgba(47,86,145,.07)';ctx.lineWidth=1;ctx.stroke();}
-   for(const side of [-1,1]){ctx.beginPath();for(let i=0;i<=80;i++){const x=-330+i*660/80,p=project(x,center(x)+side*65,0);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}ctx.strokeStyle=dark?'#799bc9':'#53769e';ctx.lineWidth=2;ctx.stroke();}
-   const cells=[];for(let i=0;i<20;i++){const u=((i/20+paintedTime*.09)%1+1)%1,x=-315+630*u,a=i*2.4,y=center(x)+Math.sin(a)*34,z=Math.cos(a)*32;cells.push({...project(x,y,z),i});}cells.sort((a,b)=>b.z-a.z);
-   for(const p of cells){const radius=(13+(p.i%3))*p.scale;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(Math.sin(p.i)*.6);ctx.scale(1,.62);const g=ctx.createRadialGradient(-radius*.3,-radius*.3,1,0,0,radius);g.addColorStop(0,'#ffbc9f');g.addColorStop(.5,'#cf655b');g.addColorStop(1,'#893d50');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,radius,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#6c304b';ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(0,0,radius*.45,radius*.55,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
-   if(active&&level>0){const g=ctx.createRadialGradient(450,190,10,450,190,260);g.addColorStop(0,`rgba(242,183,102,${Math.min(.23,level*.7)})`);g.addColorStop(1,'rgba(242,183,102,0)');ctx.fillStyle=g;ctx.fillRect(80,60,740,260);}
-   ctx.font='16px Segoe UI, Arial';ctx.fillStyle=dark?'#b5c3d9':'#435875';ctx.textAlign='center';ctx.fillText(active?tr('Audio active • illustrative motion','الصوت نشط • حركة توضيحية'):tr('Ready • record or play audio','جاهز • سجّل أو شغّل الصوت'),450,345);
-  }
-  const scene={update(rms,seconds,playing){level=Math.min(1,Math.sqrt(Math.max(0,rms)));time=seconds;active=playing;if(!frozen)paintedTime=time;draw();},refresh(){labels();draw();},dispose(){scenes.delete(scene);box.remove();}};
-  slider.oninput=()=>{angle=Number(slider.value)*Math.PI/180;draw();};button.onclick=()=>{frozen=!frozen;labels();draw();};scenes.add(scene);labels();draw();return scene;
+  box.innerHTML='<div class="flow-head"><strong></strong><span></span></div><div class="vessel-stage"></div><div class="flow-direction" aria-hidden="true">→ → → → →</div><div class="flow-controls"><button type="button" class="secondary"></button><label><span></span><input type="range" min="-30" max="30" value="0"></label></div><p></p>';
+  host.append(box);const stage=box.querySelector('.vessel-stage'),button=box.querySelector('button'),slider=box.querySelector('input');
+  let renderer,scene,camera,group,cells=[],material,frame=0,preview=false,playing=false,frozen=matchMedia('(prefers-reduced-motion: reduce)').matches,time=0,signal=0,last=0,disposed=false;
+  try{
+   renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(900,430,false);renderer.outputColorSpace=THREE.SRGBColorSpace;stage.append(renderer.domElement);
+   renderer.domElement.setAttribute('role','img');
+   scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(35,900/430,.1,100);camera.position.set(0,1.3,12);camera.lookAt(0,0,0);group=new THREE.Group();scene.add(group);
+   scene.add(new THREE.HemisphereLight(0xffffff,0x493530,2.4));const light=new THREE.DirectionalLight(0xffe5cf,3);light.position.set(-3,6,6);scene.add(light);const rim=new THREE.DirectionalLight(0xffffff,1.7);rim.position.set(4,-2,-2);scene.add(rim);
+   // A cutaway cylinder exposes its interior rather than hiding cells behind a transparent tube.
+   const wall=new THREE.Mesh(new THREE.CylinderGeometry(1.15,1.15,8,64,1,true,Math.PI*.15,Math.PI*1.25),new THREE.MeshStandardMaterial({color:0xb7706f,roughness:.55,metalness:.08,side:THREE.DoubleSide}));wall.rotation.z=Math.PI/2;wall.rotation.x=.25;group.add(wall);
+   material=new THREE.MeshStandardMaterial({color:0xc64246,roughness:.38,metalness:.06,emissive:0x482014,emissiveIntensity:0});
+   const profile=[];for(let i=0;i<=24;i++){const a=i/24*Math.PI;profile.push(new THREE.Vector2(Math.sin(a)*.28,Math.cos(a)*(.07+.10*Math.sin(a)**2)));}const geometry=new THREE.LatheGeometry(profile,24);
+   for(let i=0;i<24;i++){const cell=new THREE.Mesh(geometry,material);cell.userData={offset:i/24,phase:i*2.4};group.add(cell);cells.push(cell);}
+   const arrow=new THREE.ArrowHelper(new THREE.Vector3(1,0,0),new THREE.Vector3(-3.5,-1.6,0),7,0xf2b766,.28,.17);group.add(arrow);
+  }catch{stage.textContent=tr('3D is unavailable on this browser. Audio recording still works.','العرض ثلاثي الأبعاد غير متاح. التسجيل الصوتي يعمل.');}
+  function draw(){if(!renderer||disposed)return;group.rotation.y=Number(slider.value)*Math.PI/180;for(const cell of cells){const u=(cell.userData.offset+time*.16)%1;cell.position.set(-3.8+7.6*u,Math.sin(cell.userData.phase)*.55,Math.cos(cell.userData.phase)*.55);cell.rotation.set(.5+Math.sin(time+cell.userData.phase)*.3,cell.userData.phase,time*.6);}material.emissiveIntensity=playing?Math.min(.7,signal*2):0;renderer.render(scene,camera);}
+  function labels(){box.querySelector('strong').textContent=tr('Blood movement • cutaway view','حركة الدم • مقطع مفتوح');box.querySelector('.flow-head span').textContent=playing?tr('Audio linked','مرتبط بالصوت'):tr('Illustration','توضيحي');button.textContent=preview?tr('Stop preview','إيقاف العرض'):playing&&!frozen?tr('Pause motion','تثبيت الحركة'):playing?tr('Resume motion','تحريك المشهد'):tr('Preview blood movement','شاهد حركة الدم');slider.setAttribute('aria-label',tr('Viewing angle','زاوية العرض'));box.querySelector('label span').textContent=tr('Rotate','تدوير');box.querySelector('p').textContent=tr('Illustrative direction and speed. Sound changes the glow—not a blood-flow measurement.','الاتجاه والسرعة للتوضيح. الصوت يغير الإضاءة، وليس قياسًا لتدفق الدم.');renderer?.domElement.setAttribute('aria-label',tr('Open vessel with red blood cells moving left to right','وعاء مفتوح بخلايا حمراء تتحرك من اليسار لليمين'));}
+  function tick(now){frame=0;if(disposed||!preview)return;if(!box.isConnected||box.closest('[hidden]')||document.hidden){preview=false;labels();return;}time+=Math.min((now-last)/1000,.05);last=now;draw();frame=requestAnimationFrame(tick);}
+  button.onclick=()=>{if(playing){frozen=!frozen;}else{preview=!preview;cancelAnimationFrame(frame);if(preview){last=performance.now();frame=requestAnimationFrame(tick);}}labels();};slider.oninput=draw;
+  const item={update(rms,seconds,on){if(on&&preview){preview=false;cancelAnimationFrame(frame);}const changed=playing!==on;playing=on;signal=rms;if(!frozen&&on)time=seconds;draw();if(changed)labels();},refresh(){labels();draw();},dispose(){disposed=true;cancelAnimationFrame(frame);scene?.traverse(o=>{o.geometry?.dispose();});material?.dispose();renderer?.dispose();box.remove();instances.delete(item);}};
+  instances.add(item);labels();draw();return item;
  }
- new MutationObserver(()=>scenes.forEach(s=>s.refresh())).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});
- const capture=create(document.querySelector('.live-display').parentElement);
- return{create,capture};
+ new MutationObserver(()=>instances.forEach(s=>s.refresh())).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});
+ return{create,capture:create(document.querySelector('.live-display').parentElement)};
 })();

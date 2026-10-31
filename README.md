@@ -137,6 +137,8 @@ Repository maintained under **iamghaid**.
 
 ## Attribution and licensing
 
+- **3D rendering:** bundled Three.js 0.160.1, MIT license retained at `dist/assets/vendor/THREE-LICENSE.txt`. Vessel and cell geometry are procedurally created for this prototype; no paid third-party model is included. The cutaway illustration has a preview button and fixed illustrative motion, not physiological simulation.
+
 - **FiSaV-derived recordings:** CC BY 4.0. Dataset authors, transformations and source links are documented in [Research data](docs/RESEARCH-DATA.md). The [original license](dist/assets/research/LICENSE_CC_BY.txt) is retained.
 - **Fonts:** the supplied [font license](dist/assets/fonts/LICENSE.pdf) is retained.
 - **Logo:** generation provenance is documented in [Logo notes](docs/LOGO-PROMPT.md).
