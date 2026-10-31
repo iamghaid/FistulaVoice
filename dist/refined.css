@@ -7,3 +7,7 @@ html[data-theme=dark] .vessel-stage,html[data-theme=dark] .flow-scene .vessel-st
 .vessel-modes{display:flex;gap:8px;margin-top:18px}.vessel-modes button{flex:1;padding:12px 10px;border:1px solid var(--fv-border);background:var(--fv-surface);color:var(--fv-ink);border-radius:8px;font:inherit;font-size:13px;cursor:pointer}.vessel-modes button[aria-pressed=true]{background:#f2b766;color:#221b12;border-color:#f2b766;font-weight:700}.vessel-stage{position:relative}.vessel-callout{position:absolute;top:12px;left:50%;transform:translateX(-50%);color:#f2c787;font-size:13px;white-space:nowrap;z-index:1}.vessel-modes button:focus-visible{outline:3px solid var(--fv-accent);outline-offset:3px}
 
 .vessel-modes[hidden]{display:none}.case-listen{width:100%;padding:14px!important;border-radius:8px;background:#f2b766!important;color:#221b12!important;border:1px solid #f2b766!important;font-weight:700;cursor:pointer;margin:8px 0}.clinical-case.case-playing{outline:2px solid #f2b766;outline-offset:2px}.audio-compare-help{font-size:14px;line-height:1.6;max-width:75ch;margin:12px 0 22px;color:var(--fv-muted)}
+
+
+/* Remove repeated labels and controls, keeping all views and detail visible. */
+#history>.card>.card-heading{display:none}.playback-signal-head>span,.playback-signal>progress{display:none}.clinical-case .flow-head>strong{display:none}.clinical-case .flow-head{justify-content:flex-end}.clinical-case>audio{width:100%;margin:12px 0}body:has(#lab:not([hidden])) #quickRecord{display:none}.header-tools .demo-pill{display:none}
