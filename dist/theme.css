@@ -1,4 +1,3 @@
-/* Paired themes and a decorative acoustic contour backdrop. */
 .theme-toggle{width:35px;height:35px;display:grid;place-items:center;border:1px solid #cbded1;border-radius:10px;background:#f9fcf6;color:#245e50;font-size:23px;line-height:1;cursor:pointer}
 body{background-image:radial-gradient(ellipse at 95% 8%,#b4dcc375,transparent 45%),radial-gradient(ellipse at 20% 50%,#edd7bd70,transparent 45%),linear-gradient(140deg,#faf8ef,#eaf4ed 65%,#f4efe3);background-attachment:fixed}
 .app-shell::before{background-image:repeating-radial-gradient(ellipse at 100% 10%,transparent 0,transparent 46px,#497e6512 47px,transparent 49px,transparent 83px);background-size:100% 950px;mask-image:linear-gradient(#000,transparent 85%)}

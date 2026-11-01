@@ -1,4 +1,3 @@
-/* Evidence explains the design rationale; it is not a validation claim. */
 (() => {
   Object.assign(I18N.en,{evidence:'Evidence & purpose',evidenceTitle:'A sound history. A reason to compare.',evidenceSubtitle:'The research behind the prototype, and what remains to be tested.',pairListen:'Listen across visits',pairCurrent:'Selected recording',pairPrevious:'Previous compatible recording',captureSampleDesc:'Up to 20 seconds per site · browser-local storage'});
   Object.assign(I18N.ar,{evidence:'الأدلة والهدف',evidenceTitle:'سجل صوتي يساعد المقارنة.',evidenceSubtitle:'أساس النموذج البحثي وما يحتاج إلى اختبار.',pairListen:'استمع عبر الزيارات',pairCurrent:'التسجيل المحدد',pairPrevious:'التسجيل السابق المتوافق',captureSampleDesc:'حتى 20 ثانية لكل موضع · حفظ محلي في المتصفح'});

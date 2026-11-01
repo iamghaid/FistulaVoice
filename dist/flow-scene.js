@@ -1,4 +1,3 @@
-/* Original procedural 3D illustration. Fixed illustrative speed, never physiological inference. */
 window.FlowScene=(()=>{
  const instances=new Set(),tr=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
  function create(host,options={}){
@@ -11,7 +10,6 @@ window.FlowScene=(()=>{
    renderer.domElement.setAttribute('role','img');
    scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(35,900/430,.1,100);camera.position.set(0,1.3,12);camera.lookAt(0,0,0);group=new THREE.Group();scene.add(group);
    scene.add(new THREE.HemisphereLight(0xffffff,0x493530,2.4));const light=new THREE.DirectionalLight(0xffe5cf,3);light.position.set(-3,6,6);scene.add(light);const rim=new THREE.DirectionalLight(0xffffff,1.7);rim.position.set(4,-2,-2);scene.add(rim);
-   // A cutaway cylinder exposes its interior rather than hiding cells behind a transparent tube.
    wall=new THREE.Mesh(new THREE.CylinderGeometry(1.15,1.15,8,64,64,true,Math.PI*.15,Math.PI*1.25),new THREE.MeshStandardMaterial({color:0xb7706f,roughness:.55,metalness:.08,side:THREE.DoubleSide}));wall.rotation.z=Math.PI/2;wall.rotation.x=.25;group.add(wall);base=wall.geometry.attributes.position.array.slice();pointer=new THREE.ArrowHelper(new THREE.Vector3(0,-1,0),new THREE.Vector3(0,2.1,0),1.4,0xf2b766,.23,.14);pointer.visible=false;group.add(pointer);
    material=new THREE.MeshStandardMaterial({color:0xc64246,roughness:.38,metalness:.06,emissive:0x482014,emissiveIntensity:0});
    const profile=[];for(let i=0;i<=24;i++){const a=i/24*Math.PI;profile.push(new THREE.Vector2(Math.sin(a)*.28,Math.cos(a)*(.07+.10*Math.sin(a)**2)));}const geometry=new THREE.LatheGeometry(profile,24);

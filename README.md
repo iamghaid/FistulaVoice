@@ -1,79 +1,86 @@
-# FistulaVoice
+<p align="center">
+  <img src="dist/assets/fistulavoice-logo.png" width="120" alt="FistulaVoice logo">
+</p>
 
-### A consistent sound history for dialysis access care
+<h1 align="center">FistulaVoice</h1>
+<p align="center">A consistent sound history for dialysis access care<br>سجل صوتي موحّد لمتابعة وصلة الغسيل الكلوي</p>
+<p align="center"><strong>Team Kernel · Interactive research prototype</strong></p>
+<p align="center"><a href="https://fistulavoice.vercel.app/">Open the prototype</a> · <a href="#english">English</a> · <a href="#العربية">العربية</a> · <a href="docs/REVIEWER-GUIDE.md">Reviewer guide</a></p>
 
-**Team Kernel · MEDATHON prototype**
+## English
 
-[Live prototype](https://fistulavoice.vercel.app/) · [Reviewer walkthrough](docs/REVIEWER-GUIDE.md) · [Research data](docs/RESEARCH-DATA.md) · [Technical guide](docs/TECHNICAL-GUIDE.md)
+FistulaVoice is a working prototype for recording, replaying and comparing arteriovenous fistula sounds across visits. It organizes recordings by anonymous access code, recording site, date, device and conditions, so a previous observation remains available for review.
 
-FistulaVoice adds a structured, replayable sound history to the assessment of arteriovenous fistulas used for hemodialysis. Its proposed value is continuity: a previous recording remains available for comparison across visits and care-team members.
+**Current focus:** consistent documentation and comparison. The prototype does **not** diagnose stenosis, recognize whether an arbitrary sound is a fistula, or issue clinical alerts. Predictive detection is future research.
 
-The working prototype demonstrates **Record → Compare → Review** through guided capture, dated histories, compatible-recording playback and local review notes. External research signals and cited studies distinguish the scientific rationale from the product's current capabilities.
+### Try the prototype
 
-> **Status:** functional research prototype, not a validated diagnostic device. Measurements describe audio, not stenosis severity or blood flow. Secure multi-user sharing and predictive detection are future work; recordings currently stay in the user's browser.
+No account or installation is required. [Open FistulaVoice](https://fistulavoice.vercel.app/).
 
-![FistulaVoice workspace](docs/images/workspace.png)
+1. **History:** compare dates and sites in the labeled fictional timeline.
+2. **Signals:** listen to two external research recordings and view their waveforms. The case findings come from the source dataset.
+3. **Record:** enter an anonymous access code and device code, select a site, and capture a non-medical test sound for up to 20 seconds. Allow microphone access.
+4. **History → My recordings:** repeat with matching metadata, replay compatible recordings and save a local review note.
+5. **Library / Evidence:** inspect measurements, download recordings, or read the research sources.
 
-## Try it in three minutes
+Microphone permission is needed only for recording. Captures and notes stay in the current browser; they are not sent to a clinician or shared with other users.
 
-No account or installation is needed to explore the [live demo](https://fistulavoice.vercel.app/).
+### What is implemented
 
-1. **History:** select a site and date. Explore six fictional visits over 14 days. Values are labeled as fictional, not patient observations.
-2. **Signals:** play a research recording. The waveform follows the audio; pause, seek or freeze the visualization. Case labels come from dataset examinations, not app predictions.
-3. **Record:** enter an anonymous access code and device code, choose a fixed site, and record a non-medical test sound for up to 20 seconds. This step requires microphone permission.
-4. **History → My recordings:** repeat with matching metadata to compare current and previous recordings. Save a local review note.
-5. **Evidence:** inspect the original studies, their findings and the remaining validation needs.
+- Guided microphone recording and browser-local storage.
+- Dated, site-specific histories and current/previous recording playback.
+- Audio measurements, synchronized waveforms and CSV export.
+- Local review notes and recording deletion/download.
+- Research examples with source-provided findings and spectrograms.
+- Educational 3D vessels with clearly identified illustrative movement.
+- English/Arabic interface, light/dark themes and responsive layouts.
 
-See the [reviewer guide](docs/REVIEWER-GUIDE.md) for a complete demonstration route.
+### What the demonstration data means
 
-## Problem and proposed contribution
+| Data | Purpose | Limitation |
+| --- | --- | --- |
+| Fictional timeline | Demonstrate dated comparisons | Invented values, not observed disease progression |
+| FiSaV research excerpts | Listen to examples with documented findings | Two different participants; not phone recordings or before/after visits |
+| Your microphone captures | Try capture, storage and comparison | No automatic disease label or clinical alert |
 
-Written descriptions may not preserve the original sound heard during an earlier assessment. FistulaVoice proposes a fistula-focused reference organized by **anonymous access code, fixed recording site, date, device and recording conditions**.
+The 3D vessel is a schematic, not a reconstruction from audio. In research examples its appearance follows the dataset finding. During microphone capture, sound can affect the visualization but cannot establish narrowing or blood flow. Recordings have been processed for listening; absolute volume across research cases is not clinically comparable.
 
-The first recording is a reference, not a verified healthy baseline. Comparisons remain within compatible contexts. Whether this workflow improves clinical review or handover still needs testing with dialysis teams.
+### Research and next steps
 
-## What works today
+The [research data guide](docs/RESEARCH-DATA.md) records dataset provenance, processing and attribution. The in-app **Evidence** page links to studies and explains their limitations. Published results belong to those studies, not this prototype.
 
-- **Dated history:** site selection, a chronological chart, and differences from first/previous visits.
-- **Browser recording:** up to 20 seconds per selected site, with required anonymous access/device codes.
-- **Compatible comparisons:** matching access, site, device, condition and decoded sample rate; legacy samples without placement metadata are excluded.
-- **Playback and review:** original audio, synchronized waveforms, current/previous recording comparison and local review notes.
-- **Illustrative 3D vessel:** perspective-rendered vessel and cells during microphone capture and playback, with viewing-angle and motion controls. Audio intensity changes the glow; fixed illustrative cell speed does not measure blood flow, pulse or stenosis.
-- **Technical analysis:** duration, RMS, digital peak, near-limit samples, dominant frequency, spectral centroid and spectral similarity.
-- **Research examples:** FiSaV PZT recordings, spectrograms, raw sensor traces and source-supplied examination findings.
-- **Local controls:** download recordings, export measurements as CSV and delete captures.
-- **Interface:** English/Arabic, RTL, responsive navigation, light/dark themes, keyboard focus and reduced-motion support.
+Next steps are to test capture consistency, compare phone recordings with dedicated acoustic equipment, and evaluate the usefulness of the workflow with dialysis teams. Hardware integration, secure team sharing and a validated predictive model are not included in this release.
 
-## Three types of data, kept distinct
+## العربية
 
-**Fictional timeline:** invented values demonstrate changes at three fixed sites. They do not represent clinical progression and have no fabricated patient audio attached.
+**FistulaVoice** نموذج أولي لتسجيل صوت الناسور الشرياني الوريدي المستخدم للغسيل الكلوي، وحفظه والاستماع إليه ومقارنته عبر الزيارات. تُرتّب التسجيلات حسب رمز وصلة مجهول الهوية، وموضع التسجيل، والتاريخ، والجهاز وظروف الالتقاط، لتوفير مرجع يمكن العودة إليه.
 
-**External research recordings:** derived FiSaV sensor excerpts from two different participants. They are not phone recordings, repeated visits or a before/after treatment comparison. Clinical labels come from the source. Playback gain differs between participants, so absolute listening levels should not be compared.
+**الهدف الحالي هو توحيد التوثيق والمقارنة.** النموذج لا يشخّص التضيق، ولا يتأكد أن أي صوت مُدخل هو صوت ناسور، ولا يصدر إنذارات طبية. التنبؤ هدف بحثي لاحق.
 
-**Your captures:** microphone recordings made in your browser. They receive no disease label and are not automatically uploaded to a care team.
+### تجربة النموذج
 
-## Research behind the direction
+افتح [الموقع](https://fistulavoice.vercel.app/) دون تسجيل حساب، ويمكن تغيير اللغة من أعلى الصفحة.
 
-- **Song et al., Scientific Reports (2023):** recordings from 40 patients using dedicated acoustic equipment. The study reported sensitivity, specificity and accuracy above 90% for detecting stenosis greater than 50% in its dataset. These are **external results**, not FistulaVoice results. [Study](https://pubmed.ncbi.nlm.nih.gov/37848465/)
-- **Poloni et al., Annals of Biomedical Engineering (2025):** six patients followed prospectively with electronic-stethoscope recordings and hemodynamic measurements. Supports studying longitudinal acoustic changes, not assuming this app's centroid metric is clinically validated. [Study](https://pubmed.ncbi.nlm.nih.gov/39485642/)
-- **Higuchi et al. (2023):** phone recordings before/after angioplasty in three patients provide initial feasibility observations, not reliable performance across all phones or home conditions. [Study](https://www.jstage.jst.go.jp/article/jsdt/56/3/56_117/_article/-char/en)
+1. **السجل:** جرّب المقارنة بين التواريخ والمواضع في البيانات الوهمية المعلّمة بوضوح.
+2. **الإشارات:** استمع إلى عينتين بحثيتين وشاهد الموجة الصوتية. التصنيف مأخوذ من فحوص المصدر، وليس نتيجة تشخيص التطبيق.
+3. **التسجيل:** أدخل رمزًا مجهول الهوية ورمز الجهاز، واختر الموضع، ثم سجّل صوتًا تجريبيًا غير طبي لمدة تصل إلى 20 ثانية بعد السماح بالميكروفون.
+4. **السجل ← تسجيلاتي:** كرّر التسجيل بالبيانات نفسها لمقارنة التسجيلات المتوافقة، وأضف ملاحظة مراجعة محلية.
+5. **المكتبة / الأدلة:** راجع القياسات أو نزّل التسجيلات أو افتح المصادر البحثية.
 
-The three-site, approximately 20-second setup is a consultation-informed pilot choice, not a validated clinical standard derived from these papers.
+التسجيلات والملاحظات محفوظة في المتصفح الحالي فقط. لا تُرسل تلقائيًا إلى فريق طبي، ولا تنتقل بين الأجهزة. حذف بيانات الموقع قد يزيل السجل المحلي.
 
-### Next validation priorities
+### كيف نقرأ النتائج؟
 
-1. Compare smartphone and electronic-stethoscope recordings.
-2. Test repeatability at consistent sites under controlled conditions.
-3. Evaluate usefulness for review/handover and the additional workload.
-4. With consent and approvals, link longitudinal recordings to ultrasound findings and clinical outcomes for future detection research.
+- **السجل التجريبي:** أرقام وهمية لشرح المقارنة، وليست تطورًا سريريًا حقيقيًا.
+- **العينات البحثية:** تسجيلات حساسات من مشاركين مختلفين، وليست تسجيلات هاتف أو مقارنة قبل العلاج وبعده.
+- **تسجيلات المستخدم:** صوت فعلي مع خصائص تقنية؛ دون تصنيف مرضي أو إنذار طبي.
+- **الثري دي:** رسم تعليمي؛ ليس شكل ناسور المريض المستنتج من الصوت. في الأمثلة البحثية يتبع تصنيف المصدر.
 
-## Current boundaries
+الخطوات القادمة هي اختبار ثبات التسجيل وجودته، ومقارنة الهاتف بمعدات تسجيل مخصصة، ودراسة فائدة السجل للفريق الطبي. لا يتضمن هذا الإصدار جهازًا متصلًا، أو مشاركة آمنة بين المستخدمين، أو نموذج تنبؤ مُثبتًا.
 
-The prototype does not diagnose stenosis, predict an imminent clot, estimate access flow, recommend treatment or provide continuous emergency monitoring. It does not replace examination, Doppler ultrasound or dedicated flow measurement. There is no trained diagnostic model, hardware integration, live clinician notification service or secure multi-user patient portal in this release.
+## Run locally · التشغيل المحلي
 
-## Run locally
-
-Static HTML, CSS and JavaScript: **no npm install or build step required.**
+Static HTML, CSS and JavaScript. No build step, API key or package installation is required.
 
 ```bash
 git clone https://github.com/iamghaid/FistulaVoice.git
@@ -81,67 +88,63 @@ cd FistulaVoice
 python -m http.server 8000 --directory dist
 ```
 
-Open [localhost:8000](http://localhost:8000). Microphone access requires HTTPS or localhost and support for MediaRecorder, Web Audio and IndexedDB. Opening `index.html` directly is not supported.
+Open **http://localhost:8000**. Recording requires HTTPS or localhost and a browser supporting MediaRecorder, Web Audio and IndexedDB. Do not open the HTML file directly.
 
-### Included checks
-
-With Node.js installed, run from the repository root:
+Run the included checks with Node.js:
 
 ```bash
 node check-signals.cjs
 node check-history.cjs
 ```
 
-Checks cover signal calculations, WAV consistency, translation keys, comparison isolation and timeline calculations. Browser checks also exercised playback synchronization, seeking, local review flows, responsive layouts and themes. They do not establish clinical validity or universal device compatibility.
+These check signal calculations and comparison rules, not clinical performance.
 
-## Repository map
+## Files · دليل الملفات
 
-```text
-dist/                    Deployable static application
-  app.js                 Recording, storage, library and exports
-  measurements.js        Technical signal analysis
-  history-*.js           Timeline, comparison rules and labels
-  history.js             Real capture history and review notes
-  playback-wave.js       Audio-synchronized visualization
-  research.js            External FiSaV cases and plots
-  evidence.js            Research rationale and links
-  interface.js / .css    Navigation and visual system
-  assets/                Logo, fonts and research excerpts
-docs/
-  REVIEWER-GUIDE.md      Walkthrough and submission checklist
-  TECHNICAL-GUIDE.md     Analysis, storage and deployment
-  RESEARCH-DATA.md       FiSaV provenance and processing
-  CHANGELOG.md           Release summary
-  LOGO-PROMPT.md         Logo provenance
-  images/               Prototype screenshots
-tools/fisav/             Optional data-preparation scripts
-check-signals.cjs        Signal and language checks
-check-history.cjs        Comparison and history checks
-```
+| Path | Contents / المحتوى |
+| --- | --- |
+| `dist/` | Deployable website / ملفات الموقع الجاهزة للنشر |
+| `dist/app.js` | Capture, storage, library and exports / التسجيل والحفظ والمكتبة والتصدير |
+| `dist/measurements.js` | Audio calculations / حساب الخصائص الصوتية |
+| `dist/history.js` | Saved history and review notes / السجل والملاحظات |
+| `dist/history-protocol.js` | Recording compatibility rules / شروط توافق التسجيلات |
+| `dist/history-demo.js`, `history-chart.js` | Fictional timeline and chart / بيانات العرض والرسم الزمني |
+| `dist/visit-comparison.js` | Previous/current visit summary / ملخص مقارنة زيارتين |
+| `dist/playback-wave.js` | Waveform during playback / الموجة المتزامنة مع الصوت |
+| `dist/flow-scene.js` | Educational 3D vessel / الرسم التعليمي ثلاثي الأبعاد |
+| `dist/research.js`, `evidence.js` | Research examples and evidence / العينات والأدلة البحثية |
+| `dist/layout.css`, `interface-overrides.css` | Layout and final visual adjustments / التخطيط والتنسيق النهائي |
+| `dist/concise-copy.js` | Concise interface text / النصوص المختصرة للواجهة |
+| `dist/assets/` | Logo, fonts, licensed library and research samples / الأصول والعينات |
+| `docs/` | Reviewer, technical and data guides / أدلة المراجعة والتقنية والبيانات |
+| `tools/fisav/` | Optional research-data preparation / تجهيز البيانات البحثية |
+| `check-signals.cjs`, `check-history.cjs` | Automated checks / اختبارات برمجية |
 
-## Privacy and storage
+[Submission notes](docs/SUBMISSION-NOTES.md) · [Technical guide](docs/TECHNICAL-GUIDE.md) · [Data provenance](docs/RESEARCH-DATA.md) · [Reviewer walkthrough](docs/REVIEWER-GUIDE.md)
 
-Captures, metadata and review notes stay in IndexedDB in the current browser/origin. Theme preference is stored locally. There is no application backend uploading recordings. Changing devices/browsers or clearing site storage makes local records unavailable; download anything you need to keep first.
+## Team · الفريق
 
-Use anonymous codes, not patient identifiers. Start demonstrations with non-medical sounds. Patient recording requires consent and a clinician-agreed capture method. Browser-local storage is not a production clinical-record system or an assurance of healthcare compliance.
+**Team Kernel**
 
-## Team and ownership
+- **Gheid Abdulkarim** — Computer Science · Team Leader & Researcher.
+- **Idris Jan** — Software Engineering · MVP Developer.
+- **Alaa Ammar** — Medical Student · Medical Research & Clinical Input.
 
-**Team Kernel** — roles from the submitted presentation:
+Maintained by [iamghaid](https://github.com/iamghaid).
 
-- **Gheid Abdulkarim** — Computer Science; Team Leader & Researcher. [GitHub](https://github.com/iamghaid) · [LinkedIn](https://www.linkedin.com/in/gheid-abdulkarim-6567872ab/)
-- **Idris Jan** — Software Engineering; MVP Developer.
-- **Alaa Ammar** — Medical Student; Medical Research & Clinical Input.
+## Privacy and attribution · الخصوصية ونسب المصادر
 
-Repository maintained under **iamghaid**.
+Use anonymous codes and non-medical sounds for demonstrations. Patient recording requires consent and a clinician-agreed method. This browser-local prototype is not a production patient-record system and does not replace clinical assessment.
 
-## Attribution and licensing
+- **FiSaV excerpts:** CC BY 4.0; authors, source links and transformations are in [RESEARCH-DATA.md](docs/RESEARCH-DATA.md). [License](dist/assets/research/LICENSE_CC_BY.txt).
+- **Three.js 0.160.1:** [MIT license](dist/assets/vendor/THREE-LICENSE.txt). Vessel geometry is created in code; no paid 3D asset is included.
+- **Fonts:** [included license](dist/assets/fonts/LICENSE.pdf).
+- **Logo:** [provenance](docs/LOGO-PROMPT.md).
+- **Application code:** no open-source license grant. Public visibility does not grant rights beyond the applicable licenses.
 
-- **3D rendering:** bundled Three.js 0.160.1, MIT license retained at `dist/assets/vendor/THREE-LICENSE.txt`. Vessel and cell geometry are procedurally created for this prototype; no paid third-party model is included. The cutaway illustration has a preview button and fixed illustrative motion, not physiological simulation.
+<details>
+<summary>Research comparison screenshot · صورة المقارنة البحثية</summary>
 
-- **FiSaV-derived recordings:** CC BY 4.0. Dataset authors, transformations and source links are documented in [Research data](docs/RESEARCH-DATA.md). The [original license](dist/assets/research/LICENSE_CC_BY.txt) is retained.
-- **Fonts:** the supplied [font license](dist/assets/fonts/LICENSE.pdf) is retained.
-- **Logo:** generation provenance is documented in [Logo notes](docs/LOGO-PROMPT.md).
-- **Application code:** no open-source license has been granted. Repository visibility does not extend asset licenses to the application code.
+![Two research cases with separate recordings, waveforms and educational vessels](docs/images/research-comparison.png)
 
-**Live prototype:** [fistulavoice.vercel.app](https://fistulavoice.vercel.app/) · **Repository:** [iamghaid/FistulaVoice](https://github.com/iamghaid/FistulaVoice)
+</details>

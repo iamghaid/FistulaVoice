@@ -1,4 +1,3 @@
-/* FistulaVoice clinical workspace: readable records, quiet chrome, prominent signal. */
 :root{--fv-paper:#f3f6f5;--fv-surface:#fff;--fv-soft:#eaf2ef;--fv-ink:#193c36;--fv-muted:#526962;--fv-border:#ccdcd5;--fv-accent:#176d58;--fv-on-accent:#fff;--fv-warning:#795219;--fv-warning-bg:#faf0dc;--ink:var(--fv-ink);--muted:var(--fv-muted);--bg:var(--fv-paper);--line:var(--fv-border)}
 html[data-theme=dark]{--fv-paper:#13221e;--fv-surface:#1b2f28;--fv-soft:#263e34;--fv-ink:#edf5ef;--fv-muted:#b4c9be;--fv-border:#496255;--fv-accent:#9ad6b9;--fv-on-accent:#153629;--fv-warning:#f0d29b;--fv-warning-bg:#403622;--ink:var(--fv-ink);--muted:var(--fv-muted);--bg:var(--fv-paper);--line:var(--fv-border)}
 html body{background:var(--fv-paper);color:var(--fv-ink);font-size:16px;line-height:1.65}
@@ -72,7 +71,6 @@ html[data-theme=dark] .inline-note{background:var(--fv-soft);color:var(--fv-mute
 @media(max-width:600px){.chart-scroll-hint{display:block;font-size:13px;color:var(--fv-muted);margin:0 0 16px}#toast{bottom:100px}}
 @media(prefers-reduced-motion:reduce){html *,html *::before,html *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
-/* Dark palette: adjacent ink/slate blues with a restrained warm amber accent. */
 html[data-theme=dark]{--fv-paper:#101827;--fv-surface:#1b2940;--fv-soft:#253550;--fv-ink:#f0f3fa;--fv-muted:#b5c3d9;--fv-border:#40516d;--fv-accent:#f2b766;--fv-on-accent:#20180e;--fv-warning:#edc68c;--fv-warning-bg:#393126;--teal:#f2b766;--mint:#253550;--card:#1b2940}
 html[data-theme=dark] .sidebar{background:#141f32;border-inline-end:1px solid #34445e}
 html[data-theme=dark] .workspace{background:#1b2940;border-color:#40516d}

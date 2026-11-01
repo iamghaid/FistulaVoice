@@ -1,4 +1,3 @@
-/* Audio-driven playback visualization. No synthetic signal or diagnostic score. */
 (() => {
   const players = new Map();
   let context;
@@ -61,7 +60,6 @@
         context ||= new (window.AudioContext || window.webkitAudioContext)();
         if (!source) {
           source = context.createMediaElementSource(audio);
-          // Keep audio output independent of the visualization branch.
           source.connect(context.destination);
           analyser = context.createAnalyser(); analyser.fftSize = 2048;
           source.connect(analyser); data = new Float32Array(analyser.fftSize);

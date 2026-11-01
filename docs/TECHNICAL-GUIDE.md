@@ -60,3 +60,7 @@ python tools/fisav/build_samples.py pat006
 Extraction verifies entry size/CRC and uses HTTP Range. The archive index may need updating if upstream data changes. Generated CSV/XLSX files are excluded. See [Research data](RESEARCH-DATA.md) for source credit and processing details.
 
 Third-party data/font licenses remain with their assets. The application has no open-source license grant.
+
+## UI file names
+
+`layout.css` contains layout polish; `interface-overrides.css` contains the final neutral palette and interface refinements. `concise-copy.js` adjusts interface copy; `visit-comparison.js` renders the previous/current visit summary. CSS layers are loaded in the order specified in `index.html`.
